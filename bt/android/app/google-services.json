@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "809678254370",
+    "project_id": "btfyp-b453d",
+    "storage_bucket": "btfyp-b453d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809678254370:android:11eb726ba9132cb0b2357b",
+        "android_client_info": {
+          "package_name": "com.example.bt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809678254370-c39logkcv816pq06t0gekhhijbcvh8gt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATlBf5J_UUJ0wPIcHM-AqX4QNX7YwhW6E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809678254370-c39logkcv816pq06t0gekhhijbcvh8gt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "809678254370-0d041lfh98rmuirk2igtl4gv0bq8g0ke.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
