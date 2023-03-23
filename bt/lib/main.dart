@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bt/models/user.dart';
 import 'package:bt/screens/services/auth.dart';
 import 'package:bt/screens/wrapper.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
