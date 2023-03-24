@@ -54,10 +54,12 @@ class _HomeState extends State<Home> {
       value: DatabaseService(uid: '').profiles,
       initialData: const [],
       child: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          centerTitle: true,
           title: const Text('Brunei Tourism'),
-          backgroundColor: Colors.yellowAccent,
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
           elevation: 0.0,
           actions: <Widget>[
             IconButton(
@@ -120,20 +122,20 @@ class _HomeState extends State<Home> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
+              icon: Icon(Icons.newspaper),
+              label: 'News',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
+              icon: Icon(Icons.map),
+              label: 'Map',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.crisis_alert),
-              label: 'Alert',
+              icon: Icon(Icons.add_alert_sharp),
+              label: 'Emergency',
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Colors.black54,
           onTap: _onItemTapped,
         ),
         // body: const ProfileList(),
