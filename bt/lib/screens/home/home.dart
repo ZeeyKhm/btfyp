@@ -7,6 +7,10 @@ import 'package:bt/screens/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:bt/models/profile.dart';
+import 'package:bt/screens/home/map_tile.dart';
+import 'package:bt/screens/home/emergency.dart';
+import 'package:bt/screens/home/home_tile.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 import '../../shared/loading.dart';
 
@@ -22,22 +26,17 @@ class _HomeState extends State<Home> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Home',
-      style: optionStyle,
-    ),
+    HomeTile(),
     Text(
       'Index 1: Business',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Alert',
       style: optionStyle,
     ),
-    Text(
-      'Index 3: Alert',
-      style: optionStyle,
-    ),
+    MapTile(),
+    EmergencyTile(),
   ];
 
   void _onItemTapped(int index) {
@@ -114,29 +113,20 @@ class _HomeState extends State<Home> {
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              backgroundColor: Colors.yellow,
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.newspaper),
-              label: 'News',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.map),
-              label: 'Map',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.add_alert_sharp),
-              label: 'Emergency',
-            ),
+        bottomNavigationBar: ConvexAppBar(
+          backgroundColor: Colors.black87,
+          items: const [
+            TabItem(icon: Icons.home, title: 'Home'),
+            TabItem(icon: Icons.newspaper, title: 'News'),
+            TabItem(icon: Icons.add_alert_sharp, title: 'Alert'),
+            TabItem(icon: Icons.map, title: 'Map'),
+            TabItem(icon: Icons.people, title: 'Profile'),
           ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black54,
           onTap: _onItemTapped,
+          // currentIndex: _selectedIndex,
+          // shadowColor: Colors.blue,
+          activeColor: Colors.yellow,
+          style: TabStyle.fixedCircle,
         ),
         // body: const ProfileList(),
       ),
