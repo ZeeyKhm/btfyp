@@ -83,16 +83,27 @@ class _RegisterState extends State<Register> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Checkbox(
-                      checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.resolveWith(getColor),
-                      value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
-                    ),
+                    Row(children: [
+                      // Container(
+                      //   width: 70.0,
+                      // ),
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor: MaterialStateProperty.resolveWith(getColor),
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                      const Flexible(
+                        child: Text(
+                          'I have read and approved  Brunei Tourism general terms and condition',
+                          softWrap: true,
+                        ),
+                      ),
+                    ]),
                     ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
