@@ -28,24 +28,31 @@ class _SignInState extends State<SignIn> {
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: const Color.fromARGB(255, 255, 237, 73),
+            backgroundColor: const Color.fromARGB(255, 245, 203, 66),
             body: Container(
+              // decoration: const BoxDecoration(
+              //   image: DecorationImage(
+              //     image: AssetImage("assets/images/background.jpg"),
+              //     fit: BoxFit.cover,
+              //     colorFilter: ColorFilter.mode(
+              //       Colors.black54,
+              //       BlendMode.darken,
+              //     ),
+              //   ),
+              // ),
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
-                      height: 200.0,
-                    ),
-                    Image.asset(
-                      'assets/Brunei.png',
-                      width: 100.0,
-                      height: 100.0,
-                    ),
-                    const SizedBox(
-                      height: 200.0,
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset(
+                        "assets/images/biglogo.png",
+                        width: 200.0,
+                        height: 200.0,
+                      ),
                     ),
                     TextFormField(
                       decoration:
@@ -80,9 +87,11 @@ class _SignInState extends State<SignIn> {
                             setState(() => loading = true);
                             dynamic result = await _auth
                                 .signInWithEmailAndPassword(email, password);
+                            setState(() => loading = false);
                             if (result == null) {
-                              error = 'please enter a valid email';
-                              loading = false;
+                              setState(() {
+                                error = 'Enter a valid Email or Password';
+                              });
                             }
                           }
                         },
@@ -104,19 +113,36 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    ElevatedButton(
-                        onPressed: () async {
-                          setState(() => loading = true);
-                          dynamic result = await _auth.signInAnon();
-                          if (result == null) {
-                            print('error signing in');
-                            loading = false;
-                          } else {
-                            print('signed in');
-                            print(result.uid);
-                          }
-                        },
-                        child: const Text('Sign in Anon')),
+
+                    InkWell(
+                      onTap: () async {
+                        setState(() => loading = true);
+                        dynamic result = await _auth.signInAnon();
+                        if (result == null) {
+                          print('error signing in');
+                          loading = false;
+                        } else {
+                          print('signed in');
+                          print(result.uid);
+                        }
+                      },
+                      child: const Text(
+                        'Sign in as guest',
+                      ),
+                    ),
+                    // ElevatedButton(
+                    //     onPressed: () async {
+                    //       setState(() => loading = true);
+                    //       dynamic result = await _auth.signInAnon();
+                    //       if (result == null) {
+                    //         print('error signing in');
+                    //         loading = false;
+                    //       } else {
+                    //         print('signed in');
+                    //         print(result.uid);
+                    //       }
+                    //     },
+                    //     child: const Text('Sign in Anon')),
                     Text(
                       error,
                       style: const TextStyle(color: Colors.red, fontSize: 14.0),

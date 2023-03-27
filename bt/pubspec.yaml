@@ -19,6 +19,7 @@ dependencies:
   carousel_slider: ^4.2.1
   url_launcher: ^6.1.10
   convex_bottom_bar: ^3.2.0
+  # flutter_launcher_icons: ^0.12.0
   flutter:
     sdk: flutter
 
@@ -30,10 +31,32 @@ dev_dependencies:
 
 flutter_native_splash:
   color: "#f5cb42"
-  image: assets/assets/Brunei.png
+  image: assets/images/splashscreenlogo.png
+  android_12: 
+    image: assets/images/splashscreenlogo.png
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
   
   assets:
-    - assets/
+    - assets/images/
+
+# flutter_icons:
+#   android: "launcher_icon"
+#   ios: true
+#   image_path: "assets/images/logo.png"
+#   min_sdk_android: 21
+#   web:
+#     generate: true
+#     image_path: "assets/images/logo.png"
+#     background_color: "#f5cb42"
+#     theme_color: "#f5cb42"
+#   windows:
+#     generate: true
+#     image_path: "assets/images/logo.png"
+#     icon_size: 48
+#   macos:
+#     generate: true
+#     image_path: "assets/images/logo.png"

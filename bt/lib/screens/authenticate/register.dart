@@ -22,28 +22,26 @@ class _RegisterState extends State<Register> {
   String password = '';
   String error = '';
 
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: Colors.yellow[40],
-            appBar: AppBar(
-              backgroundColor: Colors.yellow[500],
-              elevation: 0.0,
-              title: const Text('Sign Up to Brunei Tourism'),
-              actions: <Widget>[
-                TextButton.icon(
-                  onPressed: () {
-                    widget.toggleView();
-                  },
-                  icon: const Icon(
-                    Icons.person,
-                  ),
-                  label: const Text('Log in'),
-                ),
-              ],
-            ),
+            backgroundColor: const Color.fromARGB(255, 245, 203, 66),
             body: Container(
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -51,8 +49,13 @@ class _RegisterState extends State<Register> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    const SizedBox(
-                      height: 20.0,
+                    Expanded(
+                      flex: 1,
+                      child: Image.asset(
+                        "assets/images/biglogo.png",
+                        width: 200.0,
+                        height: 200.0,
+                      ),
                     ),
                     TextFormField(
                       decoration:
@@ -80,31 +83,51 @@ class _RegisterState extends State<Register> {
                     const SizedBox(
                       height: 20.0,
                     ),
+                    Checkbox(
+                      checkColor: Colors.white,
+                      fillColor: MaterialStateProperty.resolveWith(getColor),
+                      value: isChecked,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          isChecked = value!;
+                        });
+                      },
+                    ),
                     ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             setState(() => loading = true);
                             dynamic result = await _auth
                                 .registerWithEmailAndPassword(email, password);
+                            setState(() => loading = false);
                             if (result == null) {
-                              error = 'please enter a valid email';
-                              loading = false;
+                              setState(() {
+                                error = 'Enter a valid Email or Password';
+                              });
                             }
 
                             // print(email);
                             // print(password);
                           }
                         },
-                        child: Text(
+                        child: const Text(
                           'Register',
                           style: TextStyle(color: Colors.white),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
+                    ElevatedButton(
+                        onPressed: () {
+                          widget.toggleView();
+                        },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(color: Colors.white),
+                        )),
                     Text(
                       error,
-                      style: TextStyle(color: Colors.red, fontSize: 14.0),
+                      style: const TextStyle(color: Colors.red, fontSize: 14.0),
                     )
                   ],
                 ),

@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
           // currentIndex: _selectedIndex,
           // shadowColor: Colors.blue,
           activeColor: Colors.yellow,
-          style: TabStyle.fixedCircle,
+          style: TabStyle.reactCircle,
         ),
         // body: const ProfileList(),
       ),
