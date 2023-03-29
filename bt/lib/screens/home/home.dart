@@ -11,8 +11,11 @@ import 'package:bt/screens/home/map_tile.dart';
 import 'package:bt/screens/home/emergency.dart';
 import 'package:bt/screens/home/home_tile.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../shared/loading.dart';
+
+final Uri _url = Uri.parse('tel:+999');
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -27,10 +30,7 @@ class _HomeState extends State<Home> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     HomeTile(),
-    Text(
-      'Index 1: Business',
-      style: optionStyle,
-    ),
+    MapTile(),
     Text(
       'Alert',
       style: optionStyle,
@@ -40,9 +40,11 @@ class _HomeState extends State<Home> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index != 2) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   final AuthServices _auth = AuthServices();
@@ -113,24 +115,59 @@ class _HomeState extends State<Home> {
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
         ),
-        bottomNavigationBar: ConvexAppBar(
-          backgroundColor: Colors.black87,
-          items: const [
-            TabItem(icon: Icons.home, title: 'Home'),
-            TabItem(icon: Icons.newspaper, title: 'News'),
-            TabItem(icon: Icons.add_alert_sharp, title: 'Alert'),
-            TabItem(icon: Icons.map, title: 'Map'),
-            TabItem(icon: Icons.people, title: 'Profile'),
-          ],
-          onTap: _onItemTapped,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _launchUrl();
+          },
+          tooltip: 'Alert',
+          backgroundColor: Colors.red,
+          foregroundColor: Colors.yellow,
+          child: const Icon(Icons.add_alert_sharp),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          clipBehavior: Clip.antiAlias,
+          shape: const CircularNotchedRectangle(),
+          elevation: 0,
+          child: Theme(
+            data: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+            ),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.black87,
+              selectedItemColor: Colors.grey,
+              unselectedItemColor: Colors.grey,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.newspaper), label: 'News'),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add),
+                  label: '',
+                ),
+                BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.people), label: 'Profile'),
+              ],
+              onTap: _onItemTapped,
+            ),
+          ),
           // currentIndex: _selectedIndex,
           // shadowColor: Colors.blue,
-          activeColor: Colors.yellow,
-          style: TabStyle.reactCircle,
+          // activeColor: Colors.yellow,
+          // style: TabStyle.reactCircle,
         ),
         // body: const ProfileList(),
       ),
     );
+  }
+}
+
+Future<void> _launchUrl() async {
+  if (!await launchUrl(_url)) {
+    throw Exception('Could not launch $_url');
   }
 }
 
