@@ -64,10 +64,12 @@ class _HomeState extends State<Home> {
           elevation: 0.0,
           actions: <Widget>[
             IconButton(
-                icon: const Icon(Icons.logout),
-                tooltip: 'logout',
-                onPressed: () async {
-                  await _auth.signOut();
+                icon: const Icon(Icons.search),
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: MySearchDelegate(),
+                  );
                 })
           ],
         ),
@@ -102,13 +104,13 @@ class _HomeState extends State<Home> {
                   Navigator.pop(context);
                 },
               ),
-              // ListTile(
-              //   leading: const Icon(Icons.logout),
-              //   title: const Text('Logout'),
-              //   onTap: () async {
-              //     await _auth.signOut();
-              //   },
-              // ),
+              ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('Logout'),
+                onTap: () async {
+                  await _auth.signOut();
+                },
+              ),
             ],
           ),
         ),
@@ -168,6 +170,74 @@ class _HomeState extends State<Home> {
 Future<void> _launchUrl() async {
   if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');
+  }
+}
+
+class MySearchDelegate extends SearchDelegate {
+  List<String> searchTerms = [
+    'apple',
+    'banana',
+    'nanas',
+  ];
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(
+        onPressed: () {
+          query = '';
+        },
+        icon: const Icon(Icons.clear),
+      )
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return IconButton(
+      onPressed: () {
+        close(context, null);
+      },
+      icon: const Icon(Icons.arrow_back),
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in searchTerms) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> matchQuery = [];
+    for (var fruit in searchTerms) {
+      if (fruit.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(fruit);
+      }
+    }
+    return ListView.builder(
+      itemCount: matchQuery.length,
+      itemBuilder: (context, index) {
+        var result = matchQuery[index];
+        return ListTile(
+          title: Text(result),
+        );
+      },
+    );
   }
 }
 

@@ -1,6 +1,11 @@
 import 'package:bt/models/user.dart';
+import 'package:bt/screens/authenticate/sign_in.dart';
+import 'package:bt/screens/home/home.dart';
+import 'package:bt/screens/authenticate/sign_in.dart';
 import 'package:bt/screens/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -35,6 +40,30 @@ class AuthServices {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+      return _userFromFirebase(user!);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+  //sign in Google
+  signInWithGoogle() async {
+    final GoogleSignInAccount? googleUser =
+        await GoogleSignIn(scopes: <String>["email"]).signIn();
+
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    try {
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      User? user = userCredential.user;
       return _userFromFirebase(user!);
     } catch (e) {
       print(e.toString());

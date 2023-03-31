@@ -41,8 +41,18 @@ class _RegisterState extends State<Register> {
     return loading
         ? const Loading()
         : Scaffold(
-            backgroundColor: const Color.fromARGB(255, 245, 203, 66),
+            // backgroundColor: const Color.fromARGB(255, 245, 203, 66),
             body: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/background.jpg"),
+                  fit: BoxFit.cover,
+                  // colorFilter: ColorFilter.mode(
+                  //   Colors.black54,
+                  //   BlendMode.darken,
+                  // ),
+                ),
+              ),
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
               child: Form(
