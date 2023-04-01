@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:bt/models/profile.dart';
+import 'package:brunei_tourism/models/profile.dart';
 
 class DatabaseService {
   final String uid;

@@ -1,8 +1,8 @@
-import 'package:bt/models/user.dart';
-import 'package:bt/screens/authenticate/sign_in.dart';
-import 'package:bt/screens/home/home.dart';
-import 'package:bt/screens/authenticate/sign_in.dart';
-import 'package:bt/screens/services/database.dart';
+import 'package:brunei_tourism/models/user.dart';
+import 'package:brunei_tourism/screens/authenticate/sign_in.dart';
+import 'package:brunei_tourism/screens/home/home.dart';
+import 'package:brunei_tourism/screens/authenticate/sign_in.dart';
+import 'package:brunei_tourism/screens/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';

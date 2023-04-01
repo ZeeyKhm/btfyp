@@ -1,15 +1,15 @@
-import 'package:bt/models/profile.dart';
-import 'package:bt/screens/home/profile_list.dart';
-import 'package:bt/screens/services/auth.dart';
+import 'package:brunei_tourism/models/profile.dart';
+import 'package:brunei_tourism/screens/home/profile_list.dart';
+import 'package:brunei_tourism/screens/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:bt/screens/services/database.dart';
+import 'package:brunei_tourism/screens/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:bt/models/profile.dart';
-import 'package:bt/screens/home/map_tile.dart';
-import 'package:bt/screens/home/emergency.dart';
-import 'package:bt/screens/home/home_tile.dart';
+import 'package:brunei_tourism/models/profile.dart';
+import 'package:brunei_tourism/screens/home/map_tile.dart';
+import 'package:brunei_tourism/screens/home/emergency.dart';
+import 'package:brunei_tourism/screens/home/home_tile.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 

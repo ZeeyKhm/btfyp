@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:bt/models/profile.dart';
+import 'package:brunei_tourism/models/profile.dart';
 
 class ProfileTile extends StatelessWidget {
   final Profile profile;

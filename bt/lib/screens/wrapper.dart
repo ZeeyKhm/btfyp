@@ -1,6 +1,6 @@
-import 'package:bt/models/user.dart';
-import 'package:bt/screens/home/home.dart';
-import 'package:bt/screens/authenticate/authenticate.dart';
+import 'package:brunei_tourism/models/user.dart';
+import 'package:brunei_tourism/screens/home/home.dart';
+import 'package:brunei_tourism/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

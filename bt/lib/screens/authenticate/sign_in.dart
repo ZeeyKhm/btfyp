@@ -1,4 +1,4 @@
-import 'package:bt/screens/services/auth.dart';
+import 'package:brunei_tourism/screens/services/auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/constants.dart';
@@ -114,8 +114,17 @@ class _SignInState extends State<SignIn> {
                       height: 20.0,
                     ),
                     ElevatedButton(
-                        onPressed: () {
-                          AuthServices().signInWithGoogle();
+                        onPressed: () async {
+                          setState(() => loading = true);
+                          dynamic result =
+                              await AuthServices().signInWithGoogle();
+                          if (result == null) {
+                            print('error signing in');
+                            loading = false;
+                          } else {
+                            print('signed in');
+                            print(result.uid);
+                          }
                         },
                         child: const Text(
                           'Sign in with Google',
