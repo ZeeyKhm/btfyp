@@ -69,7 +69,14 @@ class HomeTile extends StatelessWidget {
         const SizedBox(
           height: 50,
         ),
-        const Text('Whats New'),
+        const Expanded(
+          child: Card(
+            color: Colors.yellow,
+            child: Text(
+              'Whats New',
+            ),
+          ),
+        ),
       ],
     );
   }

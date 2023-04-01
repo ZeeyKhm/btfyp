@@ -107,6 +107,9 @@ class _RegisterState extends State<Register> {
                           });
                         },
                       ),
+                      const SizedBox(
+                        height: 20.0,
+                      ),
                       const Flexible(
                         child: Text(
                           'I have read and approved  Brunei Tourism general terms and condition',
@@ -115,6 +118,12 @@ class _RegisterState extends State<Register> {
                       ),
                     ]),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(220, 40),
+                          backgroundColor: Colors.black54,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             setState(() => loading = true);
@@ -139,11 +148,17 @@ class _RegisterState extends State<Register> {
                       height: 20.0,
                     ),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(220, 40),
+                          backgroundColor: Colors.black54,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
                         onPressed: () {
                           widget.toggleView();
                         },
                         child: const Text(
-                          'Login',
+                          'Back to Login',
                           style: TextStyle(color: Colors.white),
                         )),
                     Text(

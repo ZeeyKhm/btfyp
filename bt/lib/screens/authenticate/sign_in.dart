@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../../shared/constants.dart';
 import '../../shared/loading.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -82,60 +83,67 @@ class _SignInState extends State<SignIn> {
                       height: 20.0,
                     ),
                     ElevatedButton(
-                        onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            setState(() => loading = true);
-                            dynamic result = await _auth
-                                .signInWithEmailAndPassword(email, password);
-                            setState(() => loading = false);
-                            if (result == null) {
-                              setState(() {
-                                error = 'Enter a valid Email or Password';
-                              });
-                            }
-                          }
-                        },
-                        child: const Text(
-                          'Sign In',
-                          style: TextStyle(color: Colors.white),
-                        )),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    ElevatedButton(
-                        onPressed: () {
-                          widget.toggleView();
-                        },
-                        child: const Text(
-                          'Register',
-                          style: TextStyle(color: Colors.white),
-                        )),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    ElevatedButton(
-                        onPressed: () async {
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(220, 40),
+                        backgroundColor: Colors.black54,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      onPressed: () async {
+                        if (_formKey.currentState!.validate()) {
                           setState(() => loading = true);
-                          dynamic result =
-                              await AuthServices().signInWithGoogle();
+                          dynamic result = await _auth
+                              .signInWithEmailAndPassword(email, password);
+                          setState(() => loading = false);
                           if (result == null) {
-                            print('error signing in');
-                            loading = false;
-                          } else {
-                            print('signed in');
-                            print(result.uid);
+                            setState(() {
+                              error = 'Enter a valid Email or Password';
+                            });
                           }
-                        },
-                        child: const Text(
-                          'Sign in with Google',
-                          style: TextStyle(color: Colors.white),
-                        )),
+                        }
+                      },
+                    ),
                     const SizedBox(
                       height: 20.0,
                     ),
-
-                    InkWell(
-                      onTap: () async {
+                    Row(children: const <Widget>[
+                      Expanded(child: Divider()),
+                      Text("OR"),
+                      Expanded(child: Divider()),
+                    ]),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    SignInButton(
+                      Buttons.Google,
+                      onPressed: () async {
+                        setState(() => loading = true);
+                        dynamic result =
+                            await AuthServices().signInWithGoogle();
+                        if (result == null) {
+                          print('error signing in');
+                          loading = false;
+                        } else {
+                          print('signed in');
+                          print(result.uid);
+                        }
+                      },
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(220, 40),
+                        backgroundColor: Colors.black54,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15)),
+                      ),
+                      onPressed: () async {
                         setState(() => loading = true);
                         dynamic result = await _auth.signInAnon();
                         if (result == null) {
@@ -150,6 +158,36 @@ class _SignInState extends State<SignIn> {
                         'Sign in as guest',
                       ),
                     ),
+
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+
+                    InkWell(
+                      onTap: () {
+                        widget.toggleView();
+                      },
+                      child: const Text(
+                        'Register',
+                      ),
+                    ),
+                    // const Divider(),
+                    // InkWell(
+                    //   onTap: () async {
+                    //     setState(() => loading = true);
+                    //     dynamic result = await _auth.signInAnon();
+                    //     if (result == null) {
+                    //       print('error signing in');
+                    //       loading = false;
+                    //     } else {
+                    //       print('signed in');
+                    //       print(result.uid);
+                    //     }
+                    //   },
+                    //   child: const Text(
+                    //     'Sign in as guest',
+                    //   ),
+                    // ),
                     // ElevatedButton(
                     //     onPressed: () async {
                     //       setState(() => loading = true);
