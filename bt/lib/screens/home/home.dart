@@ -1,4 +1,5 @@
 import 'package:brunei_tourism/models/profile.dart';
+import 'package:brunei_tourism/screens/home/feed.dart';
 import 'package:brunei_tourism/screens/home/profile_list.dart';
 import 'package:brunei_tourism/screens/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,15 +29,15 @@ class _HomeState extends State<Home> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
-    HomeTile(),
-    MapTile(),
-    Text(
-      'Alert',
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomeTile(),
+    Feed(),
+    const Text(
+      '',
       style: optionStyle,
     ),
-    MapTile(),
-    EmergencyTile(),
+    const MapTile(),
+    const EmergencyTile(),
   ];
 
   void _onItemTapped(int index) {
@@ -144,7 +145,7 @@ class _HomeState extends State<Home> {
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.newspaper), label: 'News'),
+                    icon: Icon(Icons.newspaper), label: 'Feed'),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.add),
                   label: '',
