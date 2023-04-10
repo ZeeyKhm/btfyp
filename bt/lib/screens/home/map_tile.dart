@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'bm_tile.dart';
+import 'tutong_tile.dart';
+import 'temburong_tile.dart';
+import 'belait_tile.dart';
 
 final List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1523205771623-e0faa4d2813d?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=89719a0d55dd05e2deae4120227e6efc&auto=format&fit=crop&w=1953&q=80',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/map_tile%2F1.jpg?alt=media&token=48769043-32c2-40d0-846e-a7bbe2391e3a',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/map_tile%2F2.jpg?alt=media&token=0562a0e8-4fcc-4d7e-a8e6-6d6c688464b2',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/map_tile%2F3.jpg?alt=media&token=e355ae2c-ed3f-47b4-8732-357ee6e7de28',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/map_tile%2F4.jpg?alt=media&token=c64d359e-2dc3-4243-bc56-137e3d554078'
 ];
 void main() => runApp(const MapTile());
 
@@ -37,14 +39,6 @@ final List<Widget> imageSliders = imgList
                         ),
                         padding: const EdgeInsets.symmetric(
                             vertical: 10.0, horizontal: 20.0),
-                        child: Text(
-                          'No. ${imgList.indexOf(item)} image',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
                       ),
                     ),
                   ],
@@ -75,44 +69,77 @@ class MapTile extends StatelessWidget {
           height: 50.0,
         ),
         const Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 72.0),
-            title: Text('Brunei Muara'),
-            subtitle:
-                Text('A sufficiently long subtitle warrants three lines.'),
-            trailing: Icon(Icons.more_vert),
-            isThreeLine: true,
+          elevation: 0,
+          child: Text(
+            'Brunei Darussalam Districts',
+            textAlign: TextAlign.center,
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        const Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 72.0),
-            title: Text('Tutong'),
-            subtitle:
-                Text('A sufficiently long subtitle warrants three lines.'),
-            trailing: Icon(Icons.more_vert),
-            isThreeLine: true,
+        const Divider(),
+        InkWell(
+          child: Card(
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(left: BorderSide()), color: Colors.black12),
+              child: const ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Brunei Muara District'),
+              ),
+            ),
           ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const BmTile()));
+          },
         ),
-        const Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 72.0),
-            title: Text('Temburong'),
-            subtitle:
-                Text('A sufficiently long subtitle warrants three lines.'),
-            trailing: Icon(Icons.more_vert),
-            isThreeLine: true,
+        InkWell(
+          child: Card(
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(left: BorderSide()), color: Colors.black12),
+              child: const ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Tutong District'),
+              ),
+            ),
           ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const TutongTile()));
+          },
         ),
-        const Card(
-          child: ListTile(
-            leading: FlutterLogo(size: 72.0),
-            title: Text('Belait'),
-            subtitle:
-                Text('A sufficiently long subtitle warrants three lines.'),
-            trailing: Icon(Icons.more_vert),
-            isThreeLine: true,
+        InkWell(
+          child: Card(
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(left: BorderSide()), color: Colors.black12),
+              child: const ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Temburong District'),
+              ),
+            ),
           ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const TemburongTile()));
+          },
+        ),
+        InkWell(
+          child: Card(
+            child: Container(
+              decoration: const BoxDecoration(
+                  border: Border(left: BorderSide()), color: Colors.black12),
+              child: const ListTile(
+                leading: FlutterLogo(size: 72.0),
+                title: Text('Belait District'),
+              ),
+            ),
+          ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const BelaitTile()));
+          },
         ),
       ],
     );

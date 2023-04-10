@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-final List<String> imgList = [
-  'assets/images/background.jpg',
-];
-void main() => runApp(const HomeTile());
+final List<String> imgList = [];
+void main() => runApp(const TemburongTile());
 
 final List<Widget> imageSliders = imgList
     .map((item) => Container(
@@ -38,31 +36,33 @@ final List<Widget> imageSliders = imgList
         ))
     .toList();
 
-class HomeTile extends StatelessWidget {
-  const HomeTile({super.key});
+class TemburongTile extends StatefulWidget {
+  const TemburongTile({super.key});
 
   @override
+  State<TemburongTile> createState() => _TemburongTileState();
+}
+
+class _TemburongTileState extends State<TemburongTile> {
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        CarouselSlider(
-          options: CarouselOptions(
-            autoPlay: true,
-            aspectRatio: 2.0,
-            enlargeCenterPage: true,
-          ),
-          items: imageSliders,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Temburong'),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
+        elevation: 0.0,
+      ),
+      body: CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          aspectRatio: 2.0,
+          enlargeCenterPage: true,
         ),
-        const SizedBox(
-          height: 50,
-        ),
-        const Card(
-          color: Colors.yellow,
-          child: Text(
-            'Whats New',
-          ),
-        ),
-      ],
+        items: imageSliders,
+      ),
     );
   }
 }
