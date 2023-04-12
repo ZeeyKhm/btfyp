@@ -58,62 +58,32 @@ class _HomeState extends State<Home> {
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Brunei Tourism'),
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.black,
-          elevation: 0.0,
-          actions: <Widget>[
-            IconButton(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
                   showSearch(
                     context: context,
                     delegate: MySearchDelegate(),
                   );
-                })
-          ],
-        ),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: <Widget>[
-              const DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                ),
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-              const ListTile(
-                leading: Icon(Icons.message),
-                title: Text('Messages'),
-              ),
-              const ListTile(
-                leading: Icon(Icons.account_circle),
-                title: Text('Profile'),
-              ),
-              ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text('Settings'),
-                onTap: () {
-                  Navigator.pop(context);
                 },
-              ),
-              ListTile(
-                leading: const Icon(Icons.logout),
-                title: const Text('Logout'),
-                onTap: () async {
-                  await _auth.signOut();
-                },
-              ),
-            ],
+              );
+            },
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.logout),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            ),
+          ],
+          centerTitle: true,
+          title: const Text('Brunei Tourism'),
+          backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
+          elevation: 0.0,
         ),
         body: Center(
           child: _widgetOptions.elementAt(_selectedIndex),
@@ -176,9 +146,10 @@ Future<void> _launchUrl() async {
 
 class MySearchDelegate extends SearchDelegate {
   List<String> searchTerms = [
-    'apple',
-    'banana',
-    'nanas',
+    'brunei muara',
+    'tutong',
+    'temburong',
+    'belait',
   ];
 
   @override
@@ -206,9 +177,9 @@ class MySearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
+    for (var district in searchTerms) {
+      if (district.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(district);
       }
     }
     return ListView.builder(
@@ -225,9 +196,9 @@ class MySearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in searchTerms) {
-      if (fruit.toLowerCase().contains(query.toLowerCase())) {
-        matchQuery.add(fruit);
+    for (var district in searchTerms) {
+      if (district.toLowerCase().contains(query.toLowerCase())) {
+        matchQuery.add(district);
       }
     }
     return ListView.builder(

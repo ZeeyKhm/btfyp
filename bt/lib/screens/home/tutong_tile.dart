@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong%2F2019-09-24_20.15.43.jpg?alt=media&token=b0a97f19-575b-48cc-8bd1-6051ce0fe86d',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong%2FTaman_Seri_Warisan_Emas.jpg?alt=media&token=259eaf19-1bae-4f3f-844e-5abd463d7e24',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong%2FHospital_pmmpmhamb_02.08.2018.jpg?alt=media&token=0a5aaf25-1c8d-45f0-aab3-2a339512b2cd',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong%2FTutong_River_(15042022).jpg?alt=media&token=c43b882a-38e1-4434-97a4-aeeedfbfe254'
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F1.jpg?alt=media&token=6a7ff979-8585-4fe5-ad35-94a6ef4a7739',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F2.jpg?alt=media&token=f753932a-8859-445f-995d-67322e60ab1b',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F3.jpg?alt=media&token=235e6c50-f4c0-4d9d-a84e-220dd09469e9',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F4.jpg?alt=media&token=181a8668-6d78-47b1-a937-db9ab592bacd'
 ];
 void main() => runApp(const TutongTile());
 

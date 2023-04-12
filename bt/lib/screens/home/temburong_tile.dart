@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-final List<String> imgList = [];
+final List<String> imgList = [
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/temburong_tile%2F1.jpg?alt=media&token=6c50dbc2-7aea-4c35-b10f-aaa7476439f6',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/temburong_tile%2F2.jpg?alt=media&token=4f3c9e0d-cf08-4012-8258-441b9b844de0',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/temburong_tile%2F3.jpg?alt=media&token=306dd15d-f259-4503-9b8a-c9456419fbc9',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/temburong_tile%2F4.jpg?alt=media&token=b14ff297-616e-4154-a2d2-16ce55f10fb5'
+];
 void main() => runApp(const TemburongTile());
 
 final List<Widget> imageSliders = imgList

@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
-  'assets/images/background.jpg',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/maps_tile%2F1.jpg?alt=media&token=42b9544b-912c-4977-8a31-a79aeefe58d7',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/maps_tile%2F2.jpg?alt=media&token=5822a3bc-60b8-4052-bfb0-899a264f57e6',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/maps_tile%2F3.jpg?alt=media&token=38d07a36-d2c4-4ea0-b67a-e05b6d45637a',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/maps_tile%2F4.jpg?alt=media&token=618feb83-9b24-411c-bc32-15366f839ad9'
 ];
 void main() => runApp(const HomeTile());
 

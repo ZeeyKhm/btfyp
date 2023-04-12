@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait%2FSeria_Energy_Lab_(2).jpg?alt=media&token=29a8f158-5e11-488f-9fb9-f9d195cefd49',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait%2FLuagan_Lalak_Forest_Recreational_Park_(1).jpg?alt=media&token=eb43e698-a07a-489c-a48d-3ea1e505fa49',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait%2FKuala_Belait_at_Night_(18623608099).jpg?alt=media&token=d0a2cc84-6366-4df5-914c-4a3afc1010a1',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait%2FKuala_Belait_15_July_2022_15.jpg?alt=media&token=412f344c-97b9-446e-8f5f-813bf27097c7'
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait_tile%2F1.jpg?alt=media&token=1bc0b37c-c02b-42f0-81b8-5f8f77b604e4',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait_tile%2F2.jpg?alt=media&token=dc275205-9ab3-47ff-ad33-ba1406b25467',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait_tile%2F3.jpg?alt=media&token=b1493d7a-def3-48ee-adad-3847bba0f736',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/belait_tile%2F4.jpg?alt=media&token=10dec197-cf72-4e10-b9da-2d26caebbb1f'
 ];
 void main() => runApp(const BelaitTile());
 

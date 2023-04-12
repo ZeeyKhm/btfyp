@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 final List<String> imgList = [
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/brunei_muara%2FSultan_Omar_Ali_Saifuddien_Mosque%3B_2002.jpg?alt=media&token=678080b3-cb68-4384-b4e3-64425b380e7f',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/brunei_muara%2FGadong_Mall_-_Brunei.jpg?alt=media&token=6691fb68-7f68-47cf-a63f-409812e25da0',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/brunei_muara%2FOne_River_Side_(30122021).jpg?alt=media&token=a1d5af1c-9eef-4722-98e6-e0f5bbc8a76d',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/brunei_muara%2F1280px-BN-muara-hafen.jpg?alt=media&token=65002728-7eee-4965-9b65-1d0f831763c8'
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/bm_tile%2F1.jpg?alt=media&token=7bb982b5-e546-4320-8ce7-86d185c6b6b5',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/bm_tile%2F2.jpg?alt=media&token=58d59b66-ed0e-4e44-9724-ad0ea389a0c5',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/bm_tile%2F3.jpg?alt=media&token=5c1116f5-d9d2-4fa7-a8d7-23a3dae6807b',
+  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/bm_tile%2F4.jpg?alt=media&token=ea16024e-d921-4f07-a2a4-ece0b10a6750'
 ];
 void main() => runApp(const BmTile());
 
