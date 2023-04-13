@@ -104,8 +104,8 @@ class MapTile extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BmTile()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BmTile()));
           },
         ),
         InkWell(

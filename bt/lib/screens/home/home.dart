@@ -1,6 +1,5 @@
 import 'package:brunei_tourism/models/profile.dart';
 import 'package:brunei_tourism/screens/home/feed.dart';
-import 'package:brunei_tourism/screens/home/profile_list.dart';
 import 'package:brunei_tourism/screens/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -120,9 +119,9 @@ class _HomeState extends State<Home> {
                   icon: Icon(Icons.add),
                   label: '',
                 ),
-                BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
+                BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Places'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.people), label: 'Profile'),
+                    icon: Icon(Icons.people), label: 'Emergency'),
               ],
               onTap: _onItemTapped,
             ),
