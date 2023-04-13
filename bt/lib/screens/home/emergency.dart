@@ -1,40 +1,114 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-final Uri _tel1 = Uri.parse('tel:+1-555-010-999');
-
-void main() => runApp(const EmergencyTile());
+void main() => runApp(EmergencyTile());
 
 class EmergencyTile extends StatelessWidget {
-  const EmergencyTile({super.key});
+  EmergencyTile({Key? key}) : super(key: key) {
+    _stream = _reference.snapshots();
+  }
+
+  final CollectionReference _reference =
+      FirebaseFirestore.instance.collection('emergency');
+
+  late Stream<QuerySnapshot> _stream;
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        // clipBehavior is necessary because, without it, the InkWell's animation
-        // will extend beyond the rounded edges of the [Card] (see https://github.com/flutter/flutter/issues/109776)
-        // This comes with a small performance cost, and you should not set [clipBehavior]
-        // unless you need it.
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
-          splashColor: Colors.blue.withAlpha(30),
-          onTap: () {
-            _launchTel1;
-          },
-          child: const SizedBox(
-            width: 300,
-            height: 100,
-            child: Text('A card that can be tapped'),
-          ),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Emergency'),
+        centerTitle: true,
+        backgroundColor: Colors.black12,
+        foregroundColor: Colors.black,
+        elevation: 0.0,
+      ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //Check error
+          if (snapshot.hasError) {
+            return Center(child: Text('Some error occurred ${snapshot.error}'));
+          }
+
+          //Check if data arrived
+          if (snapshot.hasData) {
+            //get the data
+            QuerySnapshot querySnapshot = snapshot.data;
+            List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+
+            //Convert the documents to Maps
+            List<Map> items = documents.map((e) => e.data() as Map).toList();
+
+            //Display the list
+            return ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Map thisItem = items[index];
+
+                  return Center(
+                    child: Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            leading: const Icon(Icons.contacts),
+                            title: Text('${thisItem['title']}'),
+                            subtitle: Text('${thisItem['sub']}'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black),
+                                  child: const Text('Call'),
+                                  onPressed: () async {
+                                    if (!await launchUrl(
+                                        Uri.parse('${thisItem['tel']}'))) {
+                                      throw Exception(
+                                          'Could not launch contacts');
+                                    }
+                                  }),
+                              const SizedBox(width: 8),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.black),
+                                child: const Text('Direction'),
+                                onPressed: () {
+                                  MapUtils.openMap(thisItem['loc']);
+                                },
+                              ),
+                              const SizedBox(width: 8),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          }
+
+          //Show loader
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
   }
 }
 
-Future<void> _launchTel1() async {
-  if (!await launchUrl(_tel1)) {
-    throw Exception('Could not launch $_tel1');
+class MapUtils {
+  MapUtils._();
+
+  static Future<void> openMap(String location) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$location';
+
+    if (await canLaunchUrl(Uri.parse(googleUrl))) {
+      await launchUrl(Uri.parse(googleUrl));
+    } else {
+      throw 'Could not open the map.';
+    }
   }
 }

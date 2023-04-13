@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
       style: optionStyle,
     ),
     const MapTile(),
-    const EmergencyTile(),
+    EmergencyTile(),
   ];
 
   void _onItemTapped(int index) {
