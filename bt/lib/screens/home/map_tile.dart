@@ -134,8 +134,8 @@ class MapTile extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const TutongTile()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => TutongTile()));
           },
         ),
         InkWell(
@@ -165,7 +165,7 @@ class MapTile extends StatelessWidget {
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const TemburongTile()));
+                MaterialPageRoute(builder: (context) => TemburongTile()));
           },
         ),
         InkWell(
@@ -194,8 +194,8 @@ class MapTile extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const BelaitTile()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => BelaitTile()));
           },
         ),
       ],

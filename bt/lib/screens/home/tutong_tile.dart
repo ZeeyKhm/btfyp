@@ -1,73 +1,131 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-final List<String> imgList = [
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F1.jpg?alt=media&token=6a7ff979-8585-4fe5-ad35-94a6ef4a7739',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F2.jpg?alt=media&token=f753932a-8859-445f-995d-67322e60ab1b',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F3.jpg?alt=media&token=235e6c50-f4c0-4d9d-a84e-220dd09469e9',
-  'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/tutong_tile%2F4.jpg?alt=media&token=181a8668-6d78-47b1-a937-db9ab592bacd'
-];
-void main() => runApp(const TutongTile());
+void main() => runApp(TutongTile());
 
-final List<Widget> imageSliders = imgList
-    .map((item) => Container(
-          margin: const EdgeInsets.all(5.0),
-          child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(5.0)),
-              child: Stack(
-                children: <Widget>[
-                  Image.network(item, fit: BoxFit.cover, width: 1000.0),
-                  Positioned(
-                    bottom: 0.0,
-                    left: 0.0,
-                    right: 0.0,
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromARGB(200, 0, 0, 0),
-                            Color.fromARGB(0, 0, 0, 0)
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                        ),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 20.0),
-                    ),
-                  ),
-                ],
-              )),
-        ))
-    .toList();
+class TutongTile extends StatelessWidget {
+  TutongTile({Key? key}) : super(key: key) {
+    _stream = _reference.snapshots();
+  }
 
-class TutongTile extends StatefulWidget {
-  const TutongTile({super.key});
+  final CollectionReference _reference =
+      FirebaseFirestore.instance.collection('tutong');
 
-  @override
-  State<TutongTile> createState() => _TutongTileState();
-}
+  late Stream<QuerySnapshot> _stream;
 
-class _TutongTileState extends State<TutongTile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Tutong'),
+        title: const Text('Tutong District'),
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.black,
         elevation: 0.0,
       ),
-      body: CarouselSlider(
-        options: CarouselOptions(
-          autoPlay: true,
-          aspectRatio: 2.0,
-          enlargeCenterPage: true,
-        ),
-        items: imageSliders,
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          //Check error
+          if (snapshot.hasError) {
+            return Center(child: Text('Some error occurred ${snapshot.error}'));
+          }
+
+          //Check if data arrived
+          if (snapshot.hasData) {
+            //get the data
+            QuerySnapshot querySnapshot = snapshot.data;
+            List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+
+            //Convert the documents to Maps
+            List<Map> items = documents.map((e) => e.data() as Map).toList();
+
+            //Display the list
+            return ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Map thisItem = items[index];
+
+                  return Center(
+                    child: Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          ListTile(
+                            leading: SizedBox(
+                              height: 300,
+                              child: thisItem.containsKey('image')
+                                  ? Image.network('${thisItem['image']}',
+                                      fit: BoxFit.cover)
+                                  : Container(),
+                            ),
+                            title: Text('${thisItem['title']}'),
+                            subtitle: Text('${thisItem['sub']}'),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.black),
+                                child: const Text('Link'),
+                                onPressed: () async {
+                                  if (!await launchUrl(
+                                      Uri.parse('${thisItem['link']}'))) {
+                                    throw Exception('Could not launch link');
+                                  }
+                                },
+                              ),
+                              TextButton(
+                                  style: TextButton.styleFrom(
+                                      foregroundColor: Colors.black),
+                                  child: const Text('Call'),
+                                  onPressed: () async {
+                                    if (!await launchUrl(
+                                        Uri.parse('${thisItem['tel']}'))) {
+                                      throw Exception(
+                                          'Could not launch contacts');
+                                    }
+                                  }),
+                              const SizedBox(width: 1),
+                              TextButton(
+                                style: TextButton.styleFrom(
+                                    foregroundColor: Colors.black),
+                                child: const Text('Direction'),
+                                onPressed: () {
+                                  MapUtils.openMap(thisItem['loc']);
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                });
+          }
+
+          //Show loader
+          return const Center(child: CircularProgressIndicator());
+        },
       ),
     );
+  }
+}
+
+class MapUtils {
+  MapUtils._();
+
+  static Future<void> openMap(String location) async {
+    String googleUrl =
+        'https://www.google.com/maps/search/?api=1&query=$location';
+
+    if (await canLaunchUrl(Uri.parse(googleUrl))) {
+      await launchUrl(Uri.parse(googleUrl));
+    } else {
+      throw 'Could not open the map.';
+    }
   }
 }
