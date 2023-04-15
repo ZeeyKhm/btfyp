@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
@@ -75,52 +74,28 @@ class _UploadState extends State<Upload> {
               ),
               IconButton(
                   onPressed: () async {
-                    /*
-                * Step 1. Pick/Capture an image   (image_picker)
-                * Step 2. Upload the image to Firebase storage
-                * Step 3. Get the URL of the uploaded image
-                * Step 4. Store the image URL inside the corresponding
-                *         document of the database.
-                * Step 5. Display the image on the list
-                *
-                * */
-
-                    /*Step 1:Pick image*/
-                    //Install image_picker
-                    //Import the corresponding library
-
                     ImagePicker imagePicker = ImagePicker();
                     XFile? file =
                         await imagePicker.pickImage(source: ImageSource.camera);
                     print('${file?.path}');
 
                     if (file == null) return;
-                    //Import dart:core
+
                     String uniqueFileName =
                         DateTime.now().millisecondsSinceEpoch.toString();
 
-                    /*Step 2: Upload to Firebase storage*/
-                    //Install firebase_storage
-                    //Import the library
-
-                    //Get a reference to storage root
                     Reference referenceRoot = FirebaseStorage.instance.ref();
                     Reference referenceDirImages =
                         referenceRoot.child('images');
 
-                    //Create a reference for the image to be stored
                     Reference referenceImageToUpload =
                         referenceDirImages.child(uniqueFileName);
 
-                    //Handle errors/success
                     try {
-                      //Store the file
                       await referenceImageToUpload.putFile(File(file.path));
-                      //Success: get the download URL
+
                       imageUrl = await referenceImageToUpload.getDownloadURL();
-                    } catch (error) {
-                      //Some error occurred
-                    }
+                    } catch (error) {}
                   },
                   icon: const Icon(Icons.camera_alt)),
               ElevatedButton(
@@ -137,7 +112,6 @@ class _UploadState extends State<Upload> {
                       String imageDescription = _controllerDescription.text;
                       String imageUploader = _controllerUploader.text;
 
-                      //Create a Map of data
                       Map<String, String> dataToSend = {
                         'title': imageTitle,
                         'description': imageDescription,
@@ -145,7 +119,6 @@ class _UploadState extends State<Upload> {
                         'username': imageUploader,
                       };
 
-                      //Add a new item
                       _reference.add(dataToSend);
                     }
                   },

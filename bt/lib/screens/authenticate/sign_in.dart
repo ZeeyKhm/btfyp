@@ -19,7 +19,6 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
 
-  //textfield state
   String email = '';
   String password = '';
   String error = '';
@@ -29,16 +28,11 @@ class _SignInState extends State<SignIn> {
     return loading
         ? const Loading()
         : Scaffold(
-            // backgroundColor: const Color.fromARGB(255, 245, 203, 66),
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/background.jpg"),
                   fit: BoxFit.cover,
-                  // colorFilter: ColorFilter.mode(
-                  //   Colors.black54,
-                  //   BlendMode.darken,
-                  // ),
                 ),
               ),
               padding:
@@ -158,11 +152,9 @@ class _SignInState extends State<SignIn> {
                         'Sign in as guest',
                       ),
                     ),
-
                     const SizedBox(
                       height: 20.0,
                     ),
-
                     InkWell(
                       onTap: () {
                         widget.toggleView();
@@ -171,36 +163,6 @@ class _SignInState extends State<SignIn> {
                         'Register',
                       ),
                     ),
-                    // const Divider(),
-                    // InkWell(
-                    //   onTap: () async {
-                    //     setState(() => loading = true);
-                    //     dynamic result = await _auth.signInAnon();
-                    //     if (result == null) {
-                    //       print('error signing in');
-                    //       loading = false;
-                    //     } else {
-                    //       print('signed in');
-                    //       print(result.uid);
-                    //     }
-                    //   },
-                    //   child: const Text(
-                    //     'Sign in as guest',
-                    //   ),
-                    // ),
-                    // ElevatedButton(
-                    //     onPressed: () async {
-                    //       setState(() => loading = true);
-                    //       dynamic result = await _auth.signInAnon();
-                    //       if (result == null) {
-                    //         print('error signing in');
-                    //         loading = false;
-                    //       } else {
-                    //         print('signed in');
-                    //         print(result.uid);
-                    //       }
-                    //     },
-                    //     child: const Text('Sign in Anon')),
                     Text(
                       error,
                       style: const TextStyle(color: Colors.red, fontSize: 14.0),
@@ -208,17 +170,6 @@ class _SignInState extends State<SignIn> {
                   ],
                 ),
               ),
-              // child: ElevatedButton(
-              //     onPressed: () async {
-              //       dynamic result = await _auth.signInAnon();
-              //       if (result == null) {
-              //         print('error signing in');
-              //       } else {
-              //         print('signed in');
-              //         print(result.uid);
-              //       }
-              //     },
-              //     child: const Text('Sign in Anon')),
             ),
           );
   }

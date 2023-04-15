@@ -63,7 +63,7 @@ class Recommends extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Container(
-        margin: EdgeInsets.only(
+        margin: const EdgeInsets.only(
           left: 20,
           top: 10,
           bottom: 10,

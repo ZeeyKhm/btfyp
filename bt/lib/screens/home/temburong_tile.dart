@@ -28,21 +28,16 @@ class TemburongTile extends StatelessWidget {
       body: StreamBuilder<QuerySnapshot>(
         stream: _stream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
-          //Check error
           if (snapshot.hasError) {
             return Center(child: Text('Some error occurred ${snapshot.error}'));
           }
 
-          //Check if data arrived
           if (snapshot.hasData) {
-            //get the data
             QuerySnapshot querySnapshot = snapshot.data;
             List<QueryDocumentSnapshot> documents = querySnapshot.docs;
 
-            //Convert the documents to Maps
             List<Map> items = documents.map((e) => e.data() as Map).toList();
 
-            //Display the list
             return ListView.builder(
                 itemCount: items.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -107,7 +102,6 @@ class TemburongTile extends StatelessWidget {
                 });
           }
 
-          //Show loader
           return const Center(child: CircularProgressIndicator());
         },
       ),

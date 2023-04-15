@@ -3,7 +3,6 @@ import 'recommed.dart';
 import 'header_with_searchbox.dart';
 import 'featured_news.dart';
 import 'title_with_more_button.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 void main() => runApp(const HomeTile());
 
@@ -23,7 +22,7 @@ class HomeTile extends StatelessWidget {
               Uri.parse('https://www.instagram.com/brunei.tourism/');
             },
           ),
-          FeaturedNews(),
+          const FeaturedNews(),
           TitleWithMoreButton(
             title: 'Recommended',
             press: () async {
@@ -31,27 +30,10 @@ class HomeTile extends StatelessWidget {
                   'https://www.instagram.com/p/Cn3haoSpeIO/?utm_source=ig_web_copy_link');
             },
           ),
-          Recommend(),
-          SizedBox(
+          const Recommend(),
+          const SizedBox(
             height: 20,
           ),
-          // CarouselSlider(
-          //   options: CarouselOptions(
-          //     autoPlay: true,
-          //     aspectRatio: 2.0,
-          //     enlargeCenterPage: true,
-          //   ),
-          //   items: imageSliders,
-          // ),
-          // const SizedBox(
-          //   height: 50,
-          // ),
-          // const Card(
-          //   color: Colors.yellow,
-          //   child: Text(
-          //     'Whats New',
-          //   ),
-          // ),
         ],
       ),
     );

@@ -17,7 +17,6 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
   bool loading = false;
 
-  //textfield state
   String email = '';
   String password = '';
   String error = '';
@@ -41,16 +40,11 @@ class _RegisterState extends State<Register> {
     return loading
         ? const Loading()
         : Scaffold(
-            // backgroundColor: const Color.fromARGB(255, 245, 203, 66),
             body: Container(
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/images/background.jpg"),
                   fit: BoxFit.cover,
-                  // colorFilter: ColorFilter.mode(
-                  //   Colors.black54,
-                  //   BlendMode.darken,
-                  // ),
                 ),
               ),
               padding:
@@ -94,9 +88,6 @@ class _RegisterState extends State<Register> {
                       height: 20.0,
                     ),
                     Row(children: [
-                      // Container(
-                      //   width: 70.0,
-                      // ),
                       Checkbox(
                         checkColor: Colors.white,
                         fillColor: MaterialStateProperty.resolveWith(getColor),
@@ -135,9 +126,6 @@ class _RegisterState extends State<Register> {
                                 error = 'Enter a valid Email or Password';
                               });
                             }
-
-                            // print(email);
-                            // print(password);
                           }
                         },
                         child: const Text(

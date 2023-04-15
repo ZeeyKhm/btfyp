@@ -16,7 +16,6 @@ class DatabaseService {
     });
   }
 
-  //profile list from snapshot
   List<Profile> _profileListFromSnapShot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Profile(
@@ -26,7 +25,6 @@ class DatabaseService {
     }).toList();
   }
 
-  //get profiles stream
   Stream<List<Profile>> get profiles {
     return btCollection.snapshots().map(_profileListFromSnapShot);
   }
