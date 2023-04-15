@@ -55,6 +55,7 @@ class _HomeState extends State<Home> {
       value: DatabaseService(uid: '').profiles,
       initialData: const [],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: Builder(
@@ -80,7 +81,7 @@ class _HomeState extends State<Home> {
           ],
           centerTitle: true,
           title: const Text('Brunei Tourism'),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.yellow,
           foregroundColor: Colors.black,
           elevation: 0.0,
         ),

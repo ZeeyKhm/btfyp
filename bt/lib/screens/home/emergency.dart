@@ -20,8 +20,8 @@ class EmergencyTile extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Emergency'),
         centerTitle: true,
-        backgroundColor: Colors.black12,
-        foregroundColor: Colors.black,
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
         elevation: 0.0,
       ),
       body: StreamBuilder<QuerySnapshot>(

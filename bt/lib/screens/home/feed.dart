@@ -106,11 +106,3 @@ class Feed extends StatelessWidget {
     );
   }
 }
-
-  
-
-  
-
-  //_reference.get()  ---> returns Future<QuerySnapshot>
-  //_reference.snapshots()--> Stream<QuerySnapshot> -- realtime updates
-
