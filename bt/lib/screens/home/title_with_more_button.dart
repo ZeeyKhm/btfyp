@@ -26,6 +26,7 @@ class TitleWithMoreButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               backgroundColor: Colors.yellow,
+              foregroundColor: Colors.black,
               textStyle: const TextStyle(color: Colors.white),
             ),
             onPressed: press,

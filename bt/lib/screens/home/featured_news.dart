@@ -23,8 +23,8 @@ class FeaturedNews extends StatelessWidget {
             press: () {},
             image:
                 'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/home_tile%2F2.jpg?alt=media&token=c4d4e114-e1dd-4220-9c06-427edec58b14',
-            title: 'Oceania Na..',
-            sub: 'Cruise Ship',
+            title: 'Oceania N..',
+            sub: 'Cruise S..',
             date: '4/4/23',
           ),
           News(
@@ -32,15 +32,15 @@ class FeaturedNews extends StatelessWidget {
             image:
                 'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/home_tile%2F3.jpg?alt=media&token=2449c8bc-2742-4ec9-baa6-32249e54e52d',
             title: 'Balai Kha..',
-            sub: 'Sultan Haj..',
+            sub: 'Sultan H..',
             date: '14/2/23',
           ),
           News(
             press: () {},
             image:
                 'https://firebasestorage.googleapis.com/v0/b/btfyp-b453d.appspot.com/o/home_tile%2F4.jpg?alt=media&token=f3706965-2809-4e2b-b583-623b73ca32c2',
-            title: 'Milky Way',
-            sub: 'Star Gazing',
+            title: 'Milky W..',
+            sub: 'Star Gaz..',
             date: '27/1/23',
           ),
         ],
